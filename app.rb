@@ -36,11 +36,11 @@ class HSRanking
   end
 
 	def random_game_outcome
-    n = case rand*100
-    when 0...@winrate then 1
-    when @winrate..100 then 0
-    end
-    n
+		n = case rand*100
+		when 0...@winrate then 1
+		when @winrate..100 then 0
+		end
+		n
 	end
 
   def init
