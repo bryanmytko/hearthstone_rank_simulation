@@ -27,11 +27,11 @@ class HSRanking
 		2 => 5,
 		1 => 5
   ]
-
-	def initialize(winrate)
+  def initialize(winrate)
 	  @winrate = winrate
 	end
 
+  #hide the output for large data sets
   def puts(string)
   end
 
