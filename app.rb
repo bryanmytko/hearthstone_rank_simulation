@@ -116,4 +116,4 @@ sample.times do
   num += g.start_playing
 end
 
-puts "Average required wins at " + winrate.to_s + "% win rate: " + (num/sample).to_s + " games."
+puts "Average required games at " + winrate.to_s + "% win rate: " + (num/sample).to_s + " games."
