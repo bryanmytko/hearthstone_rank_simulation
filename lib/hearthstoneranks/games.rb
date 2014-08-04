@@ -31,17 +31,17 @@ module HearthstoneRanks
     end
 
     def game_won
-      total_games_won += 1
-      stars += 1
-      streak += 1
+      @total_games_won += 1
+      @stars += 1
+      @streak += 1
       #bonus stars for winning streak
       if((streak >= streak_start) && (rank > rank_streak_ends))
-        stars += 1
+        @stars += 1
       end
       #rank up
       if(stars >= ranks[0][rank])
-        stars = stars - ranks[0][rank]
-        rank -= 1
+        @stars = stars - ranks[0][rank]
+        @rank -= 1
       end
     end
 
@@ -50,11 +50,11 @@ module HearthstoneRanks
      #we don't always lose stars
      if(rank < min_rank_lose)
        if(stars > 0)
-         stars -= 1
+         @stars -= 1
        end
        #rank down
        if(stars == 0)
-         rank += 1
+         @rank += 1
          stars = ranks[0][rank]
        end
      end
@@ -64,9 +64,9 @@ module HearthstoneRanks
       #TODO should put a check in here for too many games, i.e., too low a win %
       while rank > 0
         @total_games_played += 1
-        (@random_outcome == 1) ? game_won : game_lost
+        (random_outcome == 1) ? game_won : game_lost
       end
-      @total_games_played
+      total_games_played
     end
   end
 end

@@ -23,12 +23,5 @@ describe HearthstoneRanks::Games do
       games = HearthstoneRanks::Games.new(winrate)
       expect(games.start_season).to be_kind_of(Integer)
     end
-
-    it 'can simulate multiple seasons' do
-      winrate = 50
-      games_to_play = 500
-      season = HearthstoneRanks::Games.new(winrate)
-      expect(games.start_season).to be_kind_of(Integer)
-    end
   end
 end
