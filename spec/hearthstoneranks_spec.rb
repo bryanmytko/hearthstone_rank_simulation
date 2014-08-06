@@ -1,7 +1,5 @@
-require_relative '../lib/config'
-require_relative '../lib/games'
-require_relative '../lib/hearthstoneranks'
-
+require_relative '../lib/hearthstoneranks/config'
+require_relative '../lib/hearthstoneranks/games'
 
 describe HearthstoneRanks do
   context 'Configuration' do
@@ -13,11 +11,9 @@ describe HearthstoneRanks do
     end
   end
 
-  context 'Simulating Games' do
-    it 'can simulate a game' do
-      winrate = 50
-      game = HearthstoneRanks::Games.new(winrate)
-      expect(game.random_outcome).to be_between(0,1)
+  context 'Games' do
+    it 'has a Games class' do
+      expect(HearthstoneRanks::Games).to be
     end
   end
 end
