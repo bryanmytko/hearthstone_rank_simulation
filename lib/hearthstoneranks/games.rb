@@ -26,47 +26,46 @@ module HearthstoneRanks
       end
     end
 
-  def game_won
-    @total_games_won += 1
-    @stars += 1
-    @streak += 1
-    #bonus stars for winning streak
-    if((@streak >= @streak_start) && (@rank > @rank_streak_ends))
+    def game_won
+      @total_games_won += 1
       @stars += 1
-    end
-    #rank up
-    if(@stars >= @ranks[0][@rank])
-      @stars = @stars - @ranks[0][@rank]
-      @rank -= 1
-    end
-  end
-
-  def game_lost
-   @streak = 0
-   #we don't always lose stars
-   if(@rank < @min_rank_lose)
-     if(@stars > 0)
-       @stars -= 1
-     end
-     #rank down
-     if(@stars == 0)
-       @rank += 1
-       @stars = @ranks[0][@rank]
-     end
-   end
-  end
-
-
-  def start_season
-    while @rank > 0
-      @total_games_played += 1
-      if(random_outcome)
-        game_won
-      else
-        game_lost
+      @streak += 1
+      #bonus stars for winning streak
+      if((@streak >= @streak_start) && (@rank > @rank_streak_ends))
+        @stars += 1
+      end
+      #rank up
+      if(@stars >= @ranks[0][@rank])
+        @stars = @stars - @ranks[0][@rank]
+        @rank -= 1
       end
     end
-    @total_games_played
-  end
+
+    def game_lost
+     @streak = 0
+     #we don't always lose stars
+     if(@rank < @min_rank_lose)
+       if(@stars > 0)
+         @stars -= 1
+       end
+       #rank down
+       if(@stars == 0)
+         @rank += 1
+         @stars = @ranks[0][@rank]
+       end
+     end
+    end
+
+    def start_season
+      while @rank > 0
+        @total_games_played += 1
+        if(random_outcome)
+          game_won
+        else
+          game_lost
+        end
+      end
+      @total_games_played
+    end
   end
 end

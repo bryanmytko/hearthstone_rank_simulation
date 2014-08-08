@@ -1,9 +1,16 @@
-require_relative 'hearthstoneranks/hearthstoneranks'
+require_relative 'hearthstoneranks/games'
+require_relative 'hearthstoneranks/config'
 
 class Simulator
   include HearthstoneRanks
+
   def initialize(winrate, seasons)
-    game = Games.new(winrate)
+    @seaasons = seasons
+    @game = Games.new(winrate)
+  end
+
+  def play_seasons
+    @game.start_season
   end
 end
 
@@ -15,17 +22,4 @@ seasons = gets.to_i
 
 simulator = Simulator.new(winrate, seasons)
 
-#num = 0
-#sample.times do
-#  g = HSRanking.new(winrate)
-#  num += g.start_playing
-#end
-#
-#puts "Average required games at " + winrate.to_s + "% win rate: " + (num/sample).to_s + " games."
-#
-#
-  #def display_output
-  #  puts "It took you " + @total_games_played.to_s + " games to reach Legend rank."
-  #  losses = @total_games_played - @total_games_won
-  #  puts "Win / Loss ratio: " + @total_games_won.to_s + "/" + losses.to_s + "\n"
-  #end
+puts simulator.play_seasons
