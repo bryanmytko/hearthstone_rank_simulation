@@ -4,22 +4,30 @@ require_relative 'hearthstoneranks/config'
 class Simulator
   include HearthstoneRanks
 
-  def initialize(winrate, seasons)
-    @seaasons = seasons
-    @game = Games.new(winrate)
+  def initialize
+    @total = 0
+    puts "Winrate (%)?"
+    @winrate = gets.to_i
+    puts "Sample Size? (How many Legendary runs?) "
+    @seasons = gets.to_i
   end
 
-  def play_seasons
-    @game.start_season
+  def run
+    @seasons.times do
+      game = Games.new(@winrate)
+      @total += game.start_season
+    end
+    calculate_average
+  end
+
+  private
+
+  def calculate_average
+    @total / @seasons
   end
 end
 
-#get user input; winrate and how many legendary trips
-puts "Winrate (%)?"
-winrate = gets.to_i
-puts "Sample Size? (How many Legendary runs?) "
-seasons = gets.to_i
 
-simulator = Simulator.new(winrate, seasons)
+simulator = Simulator.new
 
-puts simulator.play_seasons
+puts simulator.run
