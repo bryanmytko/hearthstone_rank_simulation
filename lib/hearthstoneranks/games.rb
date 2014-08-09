@@ -57,13 +57,10 @@ module HearthstoneRanks
     end
 
     def start_season
+      #TODO should put a check in here for too many games, i.e., too low a win %
       while @rank > 0
         @total_games_played += 1
-        if(random_outcome)
-          game_won
-        else
-          game_lost
-        end
+        (random_outcome == 1) ? game_won : game_lost
       end
       @total_games_played
     end
