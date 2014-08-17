@@ -21,7 +21,6 @@ module HearthstoneRanks
       @streak = 0
 
       @winrate = winrate
-      debugger
     end
 
     def random_outcome
@@ -64,10 +63,10 @@ module HearthstoneRanks
     def start_season
       #TODO should put a check in here for too many games, i.e., too low a win %
       while rank > 0
-        total_games_played += 1
-        (random_outcome == 1) ? game_won : game_lost
+        @total_games_played += 1
+        (@random_outcome == 1) ? game_won : game_lost
       end
-      total_games_played
+      @total_games_played
     end
   end
 end
