@@ -1,8 +1,11 @@
 require_relative 'hearthstoneranks/games'
 require_relative 'hearthstoneranks/config'
+require 'debugger'
 
 class Simulator
   include HearthstoneRanks
+
+  attr_accessor :seasons, :winrate, :total
 
   def initialize
     @total = 0
@@ -13,9 +16,10 @@ class Simulator
   end
 
   def run
-    @seasons.times do
-      game = Games.new(@winrate)
-      @total += game.start_season
+    seasons.times do
+      # move this out #wwsmd
+      game = Games.new(winrate)
+      total += game.start_season
     end
     calculate_average
   end
@@ -23,7 +27,7 @@ class Simulator
   private
 
   def calculate_average
-    @total / @seasons
+    total / seasons
   end
 end
 
